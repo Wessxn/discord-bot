@@ -10,8 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 BOT_TOKEN =  os.environ.get("BOT_TOKEN")
 
-url1 = 'https://www.youtube.com/@SeanCityNavy'
-url2 = 'https://www.youtube.com/@clubpenguin_radio'
+url1 = os.environ.get("url1")
+url2 = os.environ.get("url2")
 
 intents = discord.Intents.all()
 intents.message_content = True
@@ -61,7 +61,7 @@ async def on_presence_update(before, after):
 async def on_member_join(member):
   await member.create_dm()
   await member.dm_channel.send(
-    f'Hey CUNT! Welcome to the server {member.mention}')
+    f'Welcome to the server {member.mention}')
   
 @tasks.loop(time=time)
 async def its_friday_night():
@@ -84,6 +84,6 @@ if __name__ == '__main__':
                                   name='you sleep'))
       its_friday_night.start()
     except Exception as e:
-      await channel.send(f"Yo dumbass! {e}")
+      await channel.send(f"{e}")
 
   bot.run(BOT_TOKEN)
